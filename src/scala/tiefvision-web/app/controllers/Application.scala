@@ -27,7 +27,7 @@ class Application extends Controller {
 
   def similarityFinderUploadResults(image: String) = Action {
     val imageSearchResult = findSimilarImages(image, findSimilarImagesFromFileFolder,
-      Some(s"${Configuration.HomeFolder}/${Configuration.UploadedImagesFolder}"))
+      Some(Configuration.UploadedImagesFolder))
     //TODO: supervised is hardcoded to true
     Ok(views.html.similarityFinder(imageSearchResult, true, "uploaded_dresses_db", "uploaded_bboxes_db"))
   }
@@ -37,7 +37,7 @@ class Application extends Controller {
       import java.io.File
       val filename = picture.filename
       val contentType = picture.contentType
-      picture.ref.moveTo(new File(s"${Configuration.HomeFolder}/resources/dresses-db/uploaded/master/${filename}"), true)
+      picture.ref.moveTo(new File(s"${Configuration.UploadedImagesFolder}/${filename}"), true)
       Redirect(routes.Application.similarityFinderUploadResults(filename))
     }.getOrElse {
       Redirect(routes.Application.index).flashing(
