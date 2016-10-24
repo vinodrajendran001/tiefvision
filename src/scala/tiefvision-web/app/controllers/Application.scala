@@ -10,6 +10,7 @@ import core.{DatabaseProcessing, ImageProcessing}
 import ImageProcessing._
 import play.api.mvc._
 import scala.concurrent.ExecutionContext.Implicits.global
+import helpers.Directory
 
 class Application extends Controller {
 
@@ -38,6 +39,7 @@ class Application extends Controller {
       import java.io.File
       val filename = picture.filename
       val contentType = picture.contentType
+      Directory.getOrElseCreate(Configuration.UploadedImagesFolder)
       picture.ref.moveTo(new File(s"${Configuration.UploadedImagesFolder}/${filename}"), true)
       Redirect(routes.Application.similarityFinderUploadResults(filename))
     }.getOrElse {

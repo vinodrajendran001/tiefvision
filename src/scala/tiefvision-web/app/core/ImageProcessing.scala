@@ -12,11 +12,13 @@ import java.nio.file.{Files, Paths}
 import controllers.Configuration
 import db.BoundingBox
 import scala.sys.process.Process
+import helpers.Directory
 
 object ImageProcessing {
 
-  lazy val Images = new File(Configuration.DbImagesFolder).listFiles().map(_.getName)
-  lazy val SimilarityImages = new File(s"${Configuration.HomeFolder}/src/torch/data/db/similarity/img-enc-cnn").listFiles().map(_.getName)
+  lazy val Images = Directory.getOrElseCreate(Configuration.DbImagesFolder).listFiles().map(_.getName)
+  lazy val SimilarityImages = Directory.getOrElseCreate(s"${Configuration.HomeFolder}/src/torch/data/db/similarity/img-enc-cnn").listFiles().map(_.getName)
+
   val random = scala.util.Random
 
   def randomImage = Images(random.nextInt(Images.length))

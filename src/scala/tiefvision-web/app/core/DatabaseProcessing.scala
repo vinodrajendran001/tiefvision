@@ -15,11 +15,12 @@ import db.Dataset._
 import db.{Dataset, _}
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import helpers.Directory
 
 object DatabaseProcessing {
 
-  private lazy val Images = new File(Configuration.DbImagesFolder).listFiles().map(_.getName)
-  private lazy val SimilarityImages = new File(s"${Configuration.HomeFolder}/src/torch/data/db/similarity/img-enc-cnn").listFiles().map(_.getName)
+  private lazy val Images = Directory.getOrElseCreate(Configuration.DbImagesFolder).listFiles().map(_.getName)
+  private lazy val SimilarityImages = Directory.getOrElseCreate(s"${Configuration.HomeFolder}/src/torch/data/db/similarity/img-enc-cnn").listFiles().map(_.getName)
 
   private val random = scala.util.Random
 
@@ -161,7 +162,7 @@ object DatabaseProcessing {
 
   def generateClassificationBackgroundDatasetFile(boundingBoxes: Seq[BoundingBox], dataset: Dataset, extendBoundingBox: Boolean) = {
     val cropsFolderName = s"${Configuration.BackgroundCropImagesFolder}/${ImageProcessing.boundingBoxTypeFolder(extendBoundingBox)}"
-    val cropsDirectoryFiles = new File(cropsFolderName).listFiles()
+    val cropsDirectoryFiles = Directory.getOrElseCreate(cropsFolderName).listFiles()
     val boundingBoxesInDataset = boundingBoxes.filter(_.dataset == dataset)
     val content = cropsDirectoryFiles.toSet
       .filter(file => boundingBoxesInDataset.find(boundingBox => file.getName startsWith boundingBox.name).isDefined)
@@ -175,7 +176,7 @@ object DatabaseProcessing {
 
   def generateClassificationDatasetFile(boundingBoxes: Seq[BoundingBox], dataset: Dataset, extendBoundingBox: Boolean) = {
     val cropsFolderName = s"${Configuration.CropImagesFolder}/${ImageProcessing.boundingBoxTypeFolder(extendBoundingBox)}"
-    val cropsDirectoryFiles = new File(cropsFolderName).listFiles()
+    val cropsDirectoryFiles = Directory.getOrElseCreate(cropsFolderName).listFiles()
     val boundingBoxesInDataset = boundingBoxes.filter(_.dataset == dataset)
     val content = cropsDirectoryFiles.toSet
       .filter(file => boundingBoxesInDataset.find(boundingBox => file.getName startsWith boundingBox.name).isDefined)
@@ -189,7 +190,7 @@ object DatabaseProcessing {
 
   def generateBoundingBoxDatasetFile(boundingBoxes: Seq[BoundingBox], dataset: Dataset, extendBoundingBox: Boolean) = {
     val cropsFolderName = s"${Configuration.CropImagesFolder}/${ImageProcessing.boundingBoxTypeFolder(extendBoundingBox)}"
-    val cropsDirectoryFiles = new File(cropsFolderName).listFiles()
+    val cropsDirectoryFiles = Directory.getOrElseCreate(cropsFolderName).listFiles()
     val boundingBoxesInDataset = boundingBoxes.filter(_.dataset == dataset)
     val content = cropsDirectoryFiles.toSet
       .filter(file => boundingBoxesInDataset.find(boundingBox => file.getName startsWith boundingBox.name).isDefined)
@@ -251,12 +252,12 @@ object DatabaseProcessing {
   }
 
   def cropsGenerated(scaledBoundingBox: BoundingBox): Boolean = {
-    val cropsDirectoryFiles = new File(Configuration.CropImagesFolder).listFiles()
+    val cropsDirectoryFiles = Directory.getOrElseCreate(Configuration.CropImagesFolder).listFiles()
     cropsDirectoryFiles.foldLeft(false)((exists, file) => exists || file.getName.startsWith(scaledBoundingBox.name))
   }
 
   def backgroundCropsGenerated(scaledBoundingBox: BoundingBox): Boolean = {
-    val cropsDirectoryFiles = new File(Configuration.BackgroundCropImagesFolder).listFiles()
+    val cropsDirectoryFiles = Directory.getOrElseCreate(Configuration.BackgroundCropImagesFolder).listFiles()
     cropsDirectoryFiles.foldLeft(false)((exists, file) => exists || file.getName.startsWith(scaledBoundingBox.name))
   }
 
