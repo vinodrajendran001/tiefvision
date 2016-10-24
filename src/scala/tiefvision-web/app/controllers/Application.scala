@@ -18,7 +18,8 @@ class Application extends Controller {
   def index = editBoundingBox(randomImage)
 
   def similarityGallery(isSupervised: Boolean, page: Int = 1, pageGroup: Int = 1) = Action {
-    Ok(views.html.similarityGallery(ImagesGrouped(((pageGroup - 1) * 20) + (page - 1)), isSupervised, page, pageGroup, ImagesGrouped.size / 20))
+    val images = if (ImagesGrouped.nonEmpty) ImagesGrouped(((pageGroup - 1) * 20) + (page - 1)) else Seq.empty
+    Ok(views.html.similarityGallery(images, isSupervised, page, pageGroup, ImagesGrouped.size / 20))
   }
 
   def similarityFinderUploadForm() = Action {
