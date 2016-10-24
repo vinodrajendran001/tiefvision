@@ -21,7 +21,7 @@ object ImageProcessing {
 
   val random = scala.util.Random
 
-  def randomImage = Images(random.nextInt(Images.length))
+  def randomImage: Option[String] = if(Images.nonEmpty) Some(Images(random.nextInt(Images.length))) else None
 
   def randomSmilarityImage = SimilarityImages(random.nextInt(SimilarityImages.length))
 

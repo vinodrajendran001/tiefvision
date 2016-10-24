@@ -16,7 +16,9 @@ class Application extends Controller {
 
   lazy val ImagesGrouped = Images.toList.grouped(20).toList
 
-  def index = editBoundingBox(randomImage)
+  def index = randomImage
+    .map(editBoundingBox)
+    .getOrElse(Action { NotFound("No images to add a bounding box too") })
 
   def similarityGallery(isSupervised: Boolean, page: Int = 1, pageGroup: Int = 1) = Action {
     val images = if (ImagesGrouped.nonEmpty) ImagesGrouped(((pageGroup - 1) * 20) + (page - 1)) else Seq.empty
