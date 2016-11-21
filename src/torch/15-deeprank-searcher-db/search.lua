@@ -13,6 +13,7 @@ require 'torch'
 require 'xlua'
 require 'lfs'
 local tiefvision_commons = require 'tiefvision_commons'
+local tiefvision_config_loader = require 'tiefvision_config_loader'
 local search_commons = require 'search_commons'
 
 function getTestError(reference)
@@ -39,6 +40,8 @@ function getOptions()
   cmd:text('Both the filename to search and the result filenames come from the folder $TIEFVISION_HOME/resources/dresses-db/master.')
   cmd:text()
   cmd:argument('image', 'Filename (not full path, just the filename) from $TIEFVISION_HOME/resources/dresses-db/master.', 'string')
+  cmd:text()
+  cmd:option('-config-file', tiefvision_config_loader.default, 'Configuration file to use.')
   cmd:text()
   return cmd:parse(arg)
 end
