@@ -6,4 +6,9 @@
 -- Default configuration file
 --
 
-return {}
+local libsFolder = require('paths').thisfile('..')
+package.path = package.path .. ';' .. libsFolder .. '/0-tiefvision-commons/?.lua'
+
+return {
+  database = require("tiefvision_torch_io")
+}

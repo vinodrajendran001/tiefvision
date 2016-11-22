@@ -13,12 +13,13 @@ require 'lfs'
 local tiefvision_commons = require 'tiefvision_commons'
 local tiefvision_config_loader = require 'tiefvision_config_loader'
 local search_commons = require 'search_commons'
+local database = tiefvision_config_loader.load().database
 
 function getTestError(reference)
   local dataFolder = tiefvision_commons.dataPath('encoded-images')
-  local similarityDb = tiefvision_commons.dataPath('img-unsup-similarity-db')
+  local similarityDb = 'img-unsup-similarity-db'
   local testLines = tiefvision_commons.getFiles(dataFolder)
-  local similarities = torch.load(similarityDb):double()
+  local similarities = database.read(similarityDb):double()
   local referenceIndex = search_commons.getIndex(testLines, reference)
   local comparisonTable = {}
   for testIndex = 1, #testLines do
