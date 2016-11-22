@@ -41,7 +41,7 @@ function getOptions()
   cmd:text()
   cmd:argument('image', 'Filename (not full path, just the filename) from $TIEFVISION_HOME/resources/dresses-db/master.', 'string')
   cmd:text()
-  cmd:option('-config-file', tiefvision_config_loader.default, 'Configuration file to use.')
+  cmd:option('-config', tiefvision_config_loader.default, 'Configuration file to use.')
   cmd:text()
   return cmd:parse(arg)
 end

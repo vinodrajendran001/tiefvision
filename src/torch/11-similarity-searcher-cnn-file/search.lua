@@ -63,7 +63,7 @@ function getOptions()
   cmd:argument('image', 'Filename of the query image to search.', 'string')
   cmd:argument('imagesFolder', 'Folder where the images are contained.', 'string')
   cmd:text()
-  cmd:option('-config-file', tiefvision_config_loader.default, 'Configuration file to use.')
+  cmd:option('-config', tiefvision_config_loader.default, 'Configuration file to use.')
   cmd:text()
   return cmd:parse(arg)
 end

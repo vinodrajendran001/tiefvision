@@ -7,7 +7,7 @@
 --
 
 function argument(arg)
-  local prefix = '^%-%-?config%-file'
+  local prefix = '^%-%-?config'
   local prefixAndEqual = prefix .. '='
 
   for index, value in pairs(arg) do
@@ -24,7 +24,7 @@ end
 local configLoader = {}
 
 configLoader.argument = argument(arg)
-configLoader.environment = os.getenv('CONFIG-FILE')
+configLoader.environment = os.getenv('CONFIG')
 configLoader.default = require('tiefvision_commons').path('src/torch/config.lua')
 
 configLoader.file = configLoader.argument or
