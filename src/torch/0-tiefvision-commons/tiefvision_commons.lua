@@ -7,6 +7,7 @@
 -- related to IO.
 --
 
+local torch = require 'torch'
 local image = require 'image'
 local lfs = require 'lfs'
 local tiefvision_commons = {}

@@ -5,7 +5,6 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-local inn = require 'inn'
 local torch = require 'torch'
 local image = require 'image'
 

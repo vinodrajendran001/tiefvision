@@ -11,9 +11,9 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
+local nn = require 'nn'
 local loadcaffe = require 'loadcaffe'
-local image = require 'image'
-local inn = require 'inn'
+local torch = require 'torch'
 local tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
 
 local proto_name = 'deploy.prototxt'

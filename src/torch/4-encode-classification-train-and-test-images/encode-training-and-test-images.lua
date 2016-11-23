@@ -5,9 +5,7 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-local nn = require 'nn'
-local inn = require 'inn'
-local image = require 'image'
+local torch = require 'torch'
 local tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
 
 local batch_size = 64

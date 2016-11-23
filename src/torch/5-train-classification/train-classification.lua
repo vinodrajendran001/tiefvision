@@ -5,10 +5,9 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-local inn = require 'inn'
+local nn = require 'nn'
 local optim = require 'optim'
 local torch = require 'torch'
-local xlua = require 'xlua'
 
 local tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
 local classifier = require '5-train-classification/classifier-conv'
