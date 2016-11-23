@@ -5,14 +5,14 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-require 'inn'
-require 'optim'
-require 'torch'
-require 'xlua'
-require 'lfs'
-require 'image'
+local inn = require 'inn'
+local optim = require 'optim'
+local torch = require 'torch'
+local xlua = require 'xlua'
+local lfs = require 'lfs'
+local image = require 'image'
 
-tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
+local tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
 
 local bboxlib = {}
 

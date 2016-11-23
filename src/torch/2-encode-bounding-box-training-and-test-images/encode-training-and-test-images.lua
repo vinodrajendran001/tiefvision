@@ -8,11 +8,12 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-require 'nn'
-require 'inn'
-require 'image'
-require 'lfs'
-tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
+local nn = require 'nn'
+local inn = require 'inn'
+local image = require 'image'
+local lfs = require 'lfs'
+
+local tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
 
 function loadData(encoder, filename)
   local outputsBatch = {}

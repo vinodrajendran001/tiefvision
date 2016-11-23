@@ -1,4 +1,4 @@
-require 'nn'
+local nn = require 'nn'
 local model = {}
 -- warning: module 'data [type 5]' not found
 table.insert(model, {'conv1', nn.SpatialConvolution(3, 96, 11, 11, 4, 4, 0, 0)})

@@ -11,10 +11,10 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-require 'loadcaffe'
-require 'image'
-require 'inn'
-tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
+local loadcaffe = require 'loadcaffe'
+local image = require 'image'
+local inn = require 'inn'
+local tiefvision_commons = require '0-tiefvision-commons/tiefvision_commons'
 
 local proto_name = 'deploy.prototxt'
 local model_name = 'nin_imagenet.caffemodel'

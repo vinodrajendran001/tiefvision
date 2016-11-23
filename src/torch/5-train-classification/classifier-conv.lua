@@ -2,10 +2,10 @@
 -- You may use, distribute and modify this code under the
 -- terms of the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0.txt).
 
-require "inn"
-require 'optim'
-require 'torch'
-require 'xlua'
+local inn = require "inn"
+local optim = require 'optim'
+local torch = require 'torch'
+local xlua = require 'xlua'
 
 local classifierconv = {}
 

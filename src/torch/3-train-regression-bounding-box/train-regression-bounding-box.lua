@@ -5,11 +5,11 @@
 local torchFolder = require('paths').thisfile('..')
 package.path = string.format("%s;%s/?.lua", os.getenv("LUA_PATH"), torchFolder)
 
-require 'inn'
-require 'optim'
-require 'torch'
-require 'xlua'
-require 'lfs'
+local inn = require 'inn'
+local optim = require 'optim'
+local torch = require 'torch'
+local xlua = require 'xlua'
+local lfs = require 'lfs'
 
 local locatorconv = require '3-train-regression-bounding-box/locatorconv'
 
